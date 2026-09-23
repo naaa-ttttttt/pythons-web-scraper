@@ -21,6 +21,22 @@ class WebScraper:
         except:
             print(f"failed to fetch the page: {e}")
 
+    def extract_images(self):
+       if self.soup is None:
+           print("Failed to read fetched data")
+           return
+
+           print("\n---Extracting Images---")
+
+           images = self.soup.find_all("img")
+
+           for img in images:
+               image_url = img.get("src")
+
+               if image_url:
+                   print(f"Image Found: {image_url}")
+
+
 
 
 
