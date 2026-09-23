@@ -57,12 +57,28 @@ class WebScraper:
                         tel = href.replace("tel:", "")
                         print(f"Phone number scraped: {tel}")
 
+    def extract_sites_metadata(self):
+        if self.soup is None:
+            print("Failed to fetch data")
+            return
+
+            sites_name = self.soup.find("h1")
+
+            sites_address = self.soup.find("p", class_= "business-address")
+
+            if sites_name:
+                print(f"Company's name: {sites_name.text.strip()}")
+
+            if sites_address:
+                print(f"Company's address: {sites_address.text.strip()}")
 
 
 
+user_url = input("Enter a url: ")
 
+myscraper = WebScraper(user_url)
 
-
-
-
-
+myscraper.fetch_site()
+myscraper.extract_images()
+myscraper.extract_info()
+myscraper.extract_sites_metadata()
