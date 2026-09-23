@@ -35,6 +35,32 @@ class WebScraper:
 
                if image_url:
                    print(f"Image Found: {image_url}")
+    
+    def extract_info(self):
+        if self.soup is None:
+            print("Failed to read fetched data")
+            return
+
+            print("\n---Extracting Information---")
+
+            all_links = self.soup.find_all("a")
+
+            for link in all_links:
+                href = link.get("href")
+
+                if href:
+                    if href.startswith("mailto:"):
+                        email = href.replace("mailto:", "")
+                        print(f"Email found: {email}")
+
+                    elif href.startswith("tel:"):
+                        tel = href.replace("tel:", "")
+                        print(f"Phone number scraped: {tel}")
+
+
+
+
+
 
 
 
