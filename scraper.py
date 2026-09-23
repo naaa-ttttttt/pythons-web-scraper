@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 class WebScraper:
     def __init__(self, target_url):
